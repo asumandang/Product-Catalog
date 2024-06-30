@@ -48,13 +48,6 @@ Nx comes with local caching already built-in (check your `nx.json`). On CI you m
 - [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)
 - [Learn more how to setup CI](https://nx.dev/recipes/ci)
 
-## Explore the project graph
-
-Run `npx nx graph` to show the graph of the workspace.
-It will show tasks that you can run with Nx.
-
-- [Learn more about Exploring the Project Graph](https://nx.dev/core-features/explore-graph)
-
 ## Connect with us!
 
 - [Join the community](https://nx.dev/community)
@@ -71,3 +64,24 @@ To debug bundle sizes, you may run:
 # for visualizing source maps using `source-map-explorer`
 npx nx run product-catalog:visualize-bundles:analysis
 ```
+
+## Project Tags
+
+All projects should adhere to the tag prefix below to make the workspace manageable:
+
+- `type` - signifies what the library type
+  - `app` - the application itself; it can only depend on other library but cannot be imported by other
+  - `ui` - contains dumb or reusable components
+  - `feature` - contains smart components (usually contains state)
+  - `shell` - entrypoint of a bounded context
+  - `data-access` - contains utilities for data fetching
+- `bc` (bounded context) - signifies the domain / bounded context the project is (e.g. `product`, `user`, etc.)
+
+To visualize the projects' dependencies, see [project graph](#explore-the-project-graph)
+
+## Explore the project graph
+
+Run `npx nx graph` to show the graph of the workspace.
+It will show tasks that you can run with Nx.
+
+- [Learn more about Exploring the Project Graph](https://nx.dev/core-features/explore-graph)

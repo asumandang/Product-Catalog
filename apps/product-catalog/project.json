@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "product",
   "sourceRoot": "apps/product-catalog/src",
-  "tags": [],
+  "tags": ["app:product-catalog"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
