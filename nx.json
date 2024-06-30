@@ -89,6 +89,27 @@
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "buildable": true,
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "displayBlock": true,
+      "strict": true,
+      "skipModule": true,
+      "projectNameAndRootFormat": "as-provided"
+    },
+    "@schematics/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "displayBlock": true,
+      "standalone": true
+    },
+    "nx-stylelint:configuration": {
+      "scss": true,
+      "formatter": "string"
     }
   }
 }

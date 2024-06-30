@@ -93,9 +93,11 @@ It will show tasks that you can run with Nx.
 Run the following commands when generating a new library
 
 ```shell
-npx nx g nx-stylelint:configuration --scss=true --formatter=string --project=<library/application_name>
+npx nx g @nx/angular:library --name=<library-name> --directory=libs/<bounded-context>/<library-name> --tags=<type-tag>,<bc-tag> # see project tags in the README.md to determine what tags to add
+npx nx g nx-stylelint:configuration --project=<library_name>
 ```
 
 ## Improvements
 
+- Create configuration for immutable web app
 - Create generator to add default caching when configuring nx-stylelint
