@@ -2,7 +2,7 @@
   "name": "product-shell",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/product/shell/src",
-  "prefix": "lib",
+  "prefix": "pc",
   "projectType": "library",
   "tags": ["bc:product", "type:shell"],
   "targets": {

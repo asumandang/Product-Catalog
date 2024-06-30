@@ -2,7 +2,9 @@
   "name": "@product/product-home",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^18.0.0"
+    "@angular/core": "^18.0.0",
+    "@ionic/angular": "^7.0.0",
+    "@product/product-ui": "^0.0.1"
   },
   "sideEffects": false
 }

@@ -2,7 +2,7 @@
   "name": "product-home",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/product/feature-product-home/src",
-  "prefix": "lib",
+  "prefix": "pc",
   "projectType": "library",
   "tags": ["bc:product", "type:feature"],
   "targets": {

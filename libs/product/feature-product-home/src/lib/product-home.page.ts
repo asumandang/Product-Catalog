@@ -12,7 +12,7 @@ import {
 import { ProductCardComponent } from '@product/product-ui/product-card';
 
 @Component({
-  selector: 'lib-product-home',
+  selector: 'pc-product-home',
   standalone: true,
   templateUrl: './product-home.page.html',
   styleUrl: './product-home.page.scss',
