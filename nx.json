@@ -104,13 +104,15 @@
       "displayBlock": true,
       "strict": true,
       "skipModule": true,
-      "projectNameAndRootFormat": "as-provided"
+      "projectNameAndRootFormat": "as-provided",
+      "prefix": "pc"
     },
     "@schematics/angular:component": {
       "style": "scss",
       "changeDetection": "OnPush",
       "displayBlock": true,
-      "standalone": true
+      "standalone": true,
+      "prefix": "pc"
     },
     "nx-stylelint:configuration": {
       "scss": true,
