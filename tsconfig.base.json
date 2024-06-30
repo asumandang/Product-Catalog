@@ -18,7 +18,11 @@
       "@product/product-home": [
         "libs/product/feature-product-home/src/index.ts"
       ],
-      "@product/product-shell": ["libs/product/shell/src/index.ts"]
+      "@product/product-shell": ["libs/product/shell/src/index.ts"],
+      "@product/product-ui": ["libs/product/ui/src/index.ts"],
+      "@product/product-ui/product-card": [
+        "libs/product/ui/product-card/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

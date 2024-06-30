@@ -118,6 +118,9 @@
       "scss": true,
       "formatter": "string"
     },
+    "@nx/angular:library-secondary-entry-point": {
+      "skipModule": true
+    },
     "@nx/angular:component": {
       "style": "scss"
     }

@@ -97,7 +97,24 @@ npx nx g @nx/angular:library --name=<library-name> --directory=libs/<bounded-con
 npx nx g nx-stylelint:configuration --project=<library_name>
 ```
 
+### Generation sample
+```shell
+# Shell 
+npx nx g @nx/angular:library --name=product-shell --directory=libs/product/shell --tags=type:shell,bc:product
+
+# Feature
+npx nx g @nx/angular:library --name=product-home --directory=libs/product/feature-product-home --tags=type:feature,bc:product
+```
+
+Alternatively, you can install [Nx Console](https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console) to install libraries/projects with UI.
+
 ## Improvements
 
 - Create configuration for immutable web app
 - Create generator to add default caching when configuring nx-stylelint
+
+## Troubleshooting
+
+- NX Issues
+
+Reset nx cache by using command `npx nx reset` or delete `.cache` and `node_modules/.cache`.
