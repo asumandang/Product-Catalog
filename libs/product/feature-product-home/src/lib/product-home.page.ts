@@ -8,6 +8,8 @@ import {
   IonList,
   IonTitle,
   IonItem,
+  IonSearchbar,
+  type SearchbarCustomEvent,
 } from '@ionic/angular/standalone';
 import { ProductCardComponent } from '@product/product-ui/product-card';
 
@@ -19,6 +21,7 @@ import { ProductCardComponent } from '@product/product-ui/product-card';
   imports: [
     IonHeader,
     IonToolbar,
+    IonSearchbar,
     IonContent,
     IonRefresher,
     IonRefresherContent,
@@ -28,4 +31,9 @@ import { ProductCardComponent } from '@product/product-ui/product-card';
     IonItem,
   ],
 })
-export class ProductHomePage {}
+export class ProductHomePage {
+  readonly debounceTime = 300; // Using the value as debounce time by approximating average human reaction https://humanbenchmark.com/tests/reactiontime/statistics
+  searchProduct(event: SearchbarCustomEvent) {
+    const searchText = event.detail.value;
+  }
+}
