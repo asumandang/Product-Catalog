@@ -75,6 +75,7 @@ All projects should adhere to the tag prefix below to make the workspace managea
   - `feature` - contains smart components (usually contains state)
   - `shell` - entrypoint of a bounded context / functions as an orchestrator of applications
   - `data-access` - contains utilities for data fetching
+  - `dto` - data types (types, interface, etc.)
 - `bc` (bounded context) - signifies the domain / bounded context the project is (e.g. `product`, `user`, etc.)
 
 To visualize the projects' dependencies, see [project graph](#explore-the-project-graph)
@@ -104,6 +105,12 @@ npx nx g @nx/angular:library --name=product-shell --directory=libs/product/shell
 
 # Feature
 npx nx g @nx/angular:library --name=product-home --directory=libs/product/feature-product-home --tags=type:feature,bc:product
+
+# Data Access
+npx nx g @nx/angular:library --name=product-data-access --directory=libs/product/data-access --tags=type:data-access,bc:product
+
+# DTO
+npx nx g @nx/angular:library --name=shared-dto --directory=libs/shared/dto --tags=type:dto,bc:shared
 ```
 
 Alternatively, you can install [Nx Console](https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console) to install libraries/projects with UI.

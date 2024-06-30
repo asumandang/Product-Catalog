@@ -50,6 +50,7 @@
     "@capacitor/android": "^5.0.3",
     "@capacitor/cli": "^5.0.3",
     "@capacitor/ios": "^5.0.3",
+    "@ngneat/spectator": "^19.0.0",
     "@nx/cypress": "19.2.3",
     "@nx/devkit": "19.3.2",
     "@nx/eslint": "19.3.2",
