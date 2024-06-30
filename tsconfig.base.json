@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@product/product-shell": ["libs/product/shell/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
