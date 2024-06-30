@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@product/product-home": [
+        "libs/product/feature-product-home/src/index.ts"
+      ],
       "@product/product-shell": ["libs/product/shell/src/index.ts"]
     }
   },
