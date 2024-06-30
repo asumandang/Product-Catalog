@@ -23,7 +23,8 @@
       "@product/product-ui": ["libs/product/ui/src/index.ts"],
       "@product/product-ui/product-card": [
         "libs/product/ui/product-card/src/index.ts"
-      ]
+      ],
+      "@product/shared-dto": ["libs/shared/dto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
