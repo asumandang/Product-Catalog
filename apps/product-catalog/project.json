@@ -88,6 +88,12 @@
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
+        },
+        "analysis": {
+          "outputHashing": "none",
+          "sourceMap": true,
+          "statsJson": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
@@ -215,6 +221,22 @@
         },
         "android": {
           "cmd": "update android"
+        }
+      }
+    },
+    "visualize-bundles": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": ["echo 'Please run with a specific target configuration!!'"]
+      },
+      "configurations": {
+        "analysis": {
+          "commands": [
+            "nx run {projectName}:build:analysis",
+            "source-map-explorer dist/apps/{projectName}/browser/*.js --html dist/apps/{projectName}/sme/index.html",
+            "http-server -o -c-1 ./dist/apps/{projectName}/sme/"
+          ]
         }
       }
     }

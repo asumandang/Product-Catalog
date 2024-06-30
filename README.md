@@ -64,3 +64,10 @@ It will show tasks that you can run with Nx.
 ## Bundler
 
 To ensure faster builds, `esbuild` is used.
+
+To debug bundle sizes, you may run:
+
+```shell
+# for visualizing source maps using `source-map-explorer`
+npx nx run product-catalog:visualize-bundles:analysis
+```
