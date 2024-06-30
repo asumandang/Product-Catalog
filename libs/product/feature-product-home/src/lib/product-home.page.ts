@@ -7,7 +7,9 @@ import {
   IonRefresherContent,
   IonList,
   IonTitle,
+  IonItem,
 } from '@ionic/angular/standalone';
+import { ProductCardComponent } from '@product/product-ui/product-card';
 
 @Component({
   selector: 'lib-product-home',
@@ -22,6 +24,8 @@ import {
     IonRefresherContent,
     IonList,
     IonTitle,
+    ProductCardComponent,
+    IonItem,
   ],
 })
 export class ProductHomePage {}
