@@ -239,6 +239,16 @@
           ]
         }
       }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/product-catalog/**/*.scss"],
+        "cache": true,
+        "cacheLocation": ".cache/stylelint/product-catalog/",
+        "ignorePath": "apps/product-catalog/.stylelintignore"
+      }
     }
   }
 }

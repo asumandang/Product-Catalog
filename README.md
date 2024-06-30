@@ -73,11 +73,13 @@ All projects should adhere to the tag prefix below to make the workspace managea
   - `app` - the application itself; it can only depend on other library but cannot be imported by other
   - `ui` - contains dumb or reusable components
   - `feature` - contains smart components (usually contains state)
-  - `shell` - entrypoint of a bounded context
+  - `shell` - entrypoint of a bounded context / functions as an orchestrator of applications
   - `data-access` - contains utilities for data fetching
 - `bc` (bounded context) - signifies the domain / bounded context the project is (e.g. `product`, `user`, etc.)
 
 To visualize the projects' dependencies, see [project graph](#explore-the-project-graph)
+
+The folder structure is heavily inspired by [Shell Library Patterns with NX and Monorepo Architecture](https://angularindepth.com/posts/1117/the-shell-library-patterns-with-nx-and-monorepo-architectures)
 
 ## Explore the project graph
 
@@ -85,3 +87,15 @@ Run `npx nx graph` to show the graph of the workspace.
 It will show tasks that you can run with Nx.
 
 - [Learn more about Exploring the Project Graph](https://nx.dev/core-features/explore-graph)
+
+## Generating New Library
+
+Run the following commands when generating a new library
+
+```shell
+npx nx g nx-stylelint:configuration --scss=true --formatter=string --project=<library/application_name>
+```
+
+## Improvements
+
+- Create generator to add default caching when configuring nx-stylelint
