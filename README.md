@@ -56,7 +56,7 @@ Nx comes with local caching already built-in (check your `nx.json`). On CI you m
 
 ## Bundler
 
-To ensure faster builds, `esbuild` is used.
+Because of `esbuild` not supported by Ionic, `webpack` is used for bundling. See [Github Issue](https://github.com/ionic-team/ionic-framework/issues/27251#issuecomment-1516406255)
 
 To debug bundle sizes, you may run:
 

@@ -7,13 +7,12 @@
   "tags": ["app:product-catalog"],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath.base}"],
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": {
-          "base": "dist/apps/product-catalog"
-        },
+        "outputPath": "dist/apps/product-catalog",
         "index": "apps/product-catalog/src/index.html",
+        "main": "apps/product-catalog/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/product-catalog/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
@@ -64,8 +63,7 @@
             "input": "node_modules/@ionic/angular/css/flex-utils.css"
           }
         ],
-        "scripts": [],
-        "browser": "apps/product-catalog/src/main.ts"
+        "scripts": []
       },
       "configurations": {
         "production": {
@@ -84,7 +82,9 @@
           "outputHashing": "all"
         },
         "development": {
+          "buildOptimizer": false,
           "optimization": false,
+          "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
           "namedChunks": true
