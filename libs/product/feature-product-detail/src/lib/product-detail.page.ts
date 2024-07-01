@@ -2,11 +2,12 @@ import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit,
   inject,
+  Input,
   numberAttribute,
+  OnInit,
 } from '@angular/core';
+
 import {
   IonBackButton,
   IonButtons,
@@ -19,9 +20,11 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { ProductDetailStateService } from './product-detail-state.service';
-import { RxLet } from '@rx-angular/template/let';
+
 import { RxIf } from '@rx-angular/template/if';
+import { RxLet } from '@rx-angular/template/let';
+
+import { ProductDetailStateService } from './product-detail-state.service';
 
 @Component({
   selector: 'pc-product-detail',

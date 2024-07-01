@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/router": "^18.0.0",
-    "@product/product-home": "^0.0.1"
+    "@product/product-home": "^0.0.1",
+    "@product/product-detail": "0.0.1"
   },
   "sideEffects": false
 }

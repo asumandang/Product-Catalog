@@ -1,27 +1,31 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
 import {
-  IonHeader,
-  IonToolbar,
   IonContent,
+  IonHeader,
+  IonItem,
+  IonList,
+  IonProgressBar,
   IonRefresher,
   IonRefresherContent,
-  IonList,
-  IonTitle,
-  IonItem,
   IonSearchbar,
-  type SearchbarCustomEvent,
-  IonProgressBar,
-  IonToast,
   IonText,
+  IonTitle,
+  IonToast,
+  IonToolbar,
+  type SearchbarCustomEvent,
 } from '@ionic/angular/standalone';
-import { ProductCardComponent } from '@product/product-ui/product-card';
+
 import { RxFor } from '@rx-angular/template/for';
 import { RxIf } from '@rx-angular/template/if';
-import { RxPush } from '@rx-angular/template/push';
 import { RxLet } from '@rx-angular/template/let';
+import { RxPush } from '@rx-angular/template/push';
+
+import { ProductCardComponent } from '@product/product-ui/product-card';
+
 import { ProductHomeStateService } from './product-home-state.service';
-import { NgTemplateOutlet } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'pc-product-home',

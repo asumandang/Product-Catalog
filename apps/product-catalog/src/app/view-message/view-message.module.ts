@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ViewMessagePage } from './view-message.page';
 
 import { IonicModule } from '@ionic/angular';
 
+import { ViewMessagePage } from './view-message.page';
 import { ViewMessagePageRoutingModule } from './view-message-routing.module';
 
 @NgModule({

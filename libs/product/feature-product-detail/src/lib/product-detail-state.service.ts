@@ -1,9 +1,11 @@
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '@product/product-data-access';
-import { Product } from '@product/shared-dto';
+
 import { rxState } from '@rx-angular/state';
 import { distinctUntilChanged, map, switchMap, tap } from 'rxjs';
+
+import { ProductService } from '@product/product-data-access';
+import { Product } from '@product/shared-dto';
 
 interface ProductDetailPageState {
   product: Product | null;

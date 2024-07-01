@@ -1,10 +1,11 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "plugins": ["@nx", "simple-import-sort"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "plugins": ["simple-import-sort"],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -16,6 +17,28 @@
                 "sourceTag": "*",
                 "onlyDependOnLibsWithTags": ["*"]
               }
+            ]
+          }
+        ],
+        "simple-import-sort/exports": "error",
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // Side effect imports.
+              ["^\\u0000"],
+              // angular packages
+              ["@angular(/.*|$)"],
+              // ionic packages
+              ["@ionic(/.*|$)"],
+              // 3rd party packages
+              ["^@?\\w"],
+              // internal packages and aliased paths
+              ["^@product(/.*|$)"],
+              // absolute imports imports
+              ["^"],
+              // relative imports
+              ["^\\."]
             ]
           }
         ]

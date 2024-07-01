@@ -1,11 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { ProductService } from '@product/product-data-access';
-import type { Product, ProductDisplay } from '@product/shared-dto';
+import { inject, Injectable } from '@angular/core';
+
 import { rxState } from '@rx-angular/state';
 import { rxActions } from '@rx-angular/state/actions';
 import { selectSlice, stateful } from '@rx-angular/state/selections';
-import { type Observable, map, switchMap, EMPTY, catchError } from 'rxjs';
+import { catchError, EMPTY, map, type Observable, switchMap } from 'rxjs';
+
+import { ProductService } from '@product/product-data-access';
+import type { Product, ProductDisplay } from '@product/shared-dto';
 
 interface ProductHomePageState {
   products: Product[];

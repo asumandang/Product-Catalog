@@ -1,6 +1,7 @@
-import { ProductDisplay } from '@product/shared-dto';
-import { type Spectator, createComponentFactory } from '@ngneat/spectator/jest';
+import { createComponentFactory, type Spectator } from '@ngneat/spectator/jest';
 import { RX_RENDER_STRATEGIES_CONFIG } from '@rx-angular/cdk/render-strategies';
+
+import { ProductDisplay } from '@product/shared-dto';
 
 import { ProductCardComponent } from './product-card.component';
 

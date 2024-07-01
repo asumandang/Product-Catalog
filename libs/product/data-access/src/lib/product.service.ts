@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import * as productJson from './products.json';
-import { type Observable, delay, of, map } from 'rxjs';
+import { delay, map, type Observable, of } from 'rxjs';
+
 import { Product } from '@product/shared-dto';
+
+import * as productJson from './products.json';
 
 @Injectable({
   providedIn: 'root',

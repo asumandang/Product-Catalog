@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/core": "^18.0.0",
-    "rxjs": "^7.0.0"
+    "rxjs": "^7.0.0",
+    "@product/shared-dto": "0.0.1"
   },
   "sideEffects": false
 }

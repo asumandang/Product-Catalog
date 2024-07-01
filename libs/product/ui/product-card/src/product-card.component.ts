@@ -1,5 +1,6 @@
 import { CurrencyPipe, NgOptimizedImage, SlicePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
+
 import {
   IonCard,
   IonCardContent,
@@ -9,6 +10,7 @@ import {
   IonItem,
   IonSkeletonText,
 } from '@ionic/angular/standalone';
+
 import type { ProductDisplay } from '@product/shared-dto';
 
 @Component({
