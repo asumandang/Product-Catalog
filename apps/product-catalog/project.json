@@ -17,6 +17,7 @@
         "tsConfig": "apps/product-catalog/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
+          "apps/product-catalog/src/assets",
           {
             "glob": "**/*",
             "input": "apps/product-catalog/public"
