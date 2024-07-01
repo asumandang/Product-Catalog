@@ -14,25 +14,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ng-container
-      *rxIf="isLoading$; then loading; else products"
-    ></ng-container>
-  </ion-list>
+<ion-content *rxLet="action$; let action">
+  @switch (action) { @case('pending') {
+  <ng-container *ngTemplateOutlet="loading"> </ng-container>
+  } @case('error') {
+  <ng-container *ngTemplateOutlet="error"> </ng-container>
+  } @case('done') {
+  <ng-container *ngTemplateOutlet="products"> </ng-container>
+  } }
 </ion-content>
 
 <ng-template #products>
-  <ion-item *rxFor="let product of product$; trackBy: 'id'; let index = index">
-    <pc-product-card
-      [product]="product"
-      [isPriority]="index < 5"
-    ></pc-product-card>
-  </ion-item>
+  <ion-list>
+    <ion-item
+      *rxFor="let product of product$; trackBy: 'id'; let index = index"
+    >
+      <pc-product-card
+        [product]="product"
+        [isPriority]="index < 5"
+      ></pc-product-card>
+    </ion-item>
+  </ion-list>
 </ng-template>
 
 <ng-template #loading>
-  <ion-item *rxFor="let x of [1,2]">
-    <pc-product-card [product]="null"></pc-product-card>
-  </ion-item>
+  <ion-list>
+    <ion-item *rxFor="let x of [1,2]">
+      <pc-product-card [product]="null"></pc-product-card>
+    </ion-item>
+  </ion-list>
+</ng-template>
+
+<ng-template #error>
+  <ion-text *rxLet="error$; let error"
+    ><p class="error-text">{{error}}</p></ion-text
+  >
+  <ion-toast
+    *rxLet="error$; let error"
+    [isOpen]="!!error"
+    [message]="error"
+    [duration]="5000"
+    position="top"
+    color="danger"
+  ></ion-toast>
 </ng-template>
