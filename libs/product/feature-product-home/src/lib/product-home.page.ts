@@ -10,6 +10,7 @@ import {
   IonItem,
   IonSearchbar,
   type SearchbarCustomEvent,
+  IonProgressBar,
 } from '@ionic/angular/standalone';
 import { ProductCardComponent } from '@product/product-ui/product-card';
 import { RxFor } from '@rx-angular/template/for';
@@ -31,6 +32,7 @@ import { ProductHomeStateService } from './product-home-state.service';
     IonSearchbar,
     IonTitle,
     IonToolbar,
+    IonProgressBar,
     RxFor,
     RxIf,
     ProductCardComponent,

@@ -7,6 +7,10 @@
       [debounce]="debounceTime"
       (ionInput)="searchProduct($event)"
     ></ion-searchbar>
+    <ion-progress-bar
+      *rxIf="isLoading$"
+      type="indeterminate"
+    ></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
