@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -11,17 +11,10 @@ import {
   IonSearchbar,
   type SearchbarCustomEvent,
 } from '@ionic/angular/standalone';
-import { ProductService } from '@product/product-data-access';
 import { ProductCardComponent } from '@product/product-ui/product-card';
-import type { Product, ProductDisplay } from '@product/shared-dto';
-import { rxState } from '@rx-angular/state';
-import { stateful } from '@rx-angular/state/selections';
 import { RxFor } from '@rx-angular/template/for';
-import { Observable, map, tap } from 'rxjs';
-
-interface ProductHomePageState {
-  products: Product[];
-}
+import { RxIf } from '@rx-angular/template/if';
+import { ProductHomeStateService } from './product-home-state.service';
 
 @Component({
   selector: 'pc-product-home',
@@ -29,49 +22,41 @@ interface ProductHomePageState {
   templateUrl: './product-home.page.html',
   styleUrl: './product-home.page.scss',
   imports: [
-    IonHeader,
-    IonToolbar,
-    IonSearchbar,
     IonContent,
+    IonHeader,
+    IonItem,
+    IonList,
     IonRefresher,
     IonRefresherContent,
-    IonList,
+    IonSearchbar,
     IonTitle,
-    ProductCardComponent,
-    IonItem,
+    IonToolbar,
     RxFor,
+    RxIf,
+    ProductCardComponent,
   ],
+  viewProviders: [ProductHomeStateService],
 })
-export class ProductHomePage {
-  private readonly _productService = inject(ProductService);
-  private readonly _state = rxState<ProductHomePageState>(
-    ({ set, connect }) => {
-      // set initial state
-      set({ products: [] });
-      // connect data source to state
-      connect(
-        'products',
-        this._productService.getProducts().pipe(tap(console.log))
-      );
-    }
-  );
+export class ProductHomePage implements OnInit {
+  readonly stateService = inject(ProductHomeStateService, { self: true });
+  readonly product$ = this.stateService.product$;
+  readonly isLoading$ = this.stateService.isLoading$;
 
-  readonly debounceTime = 300; // Using the value as debounce time by approximating average human reaction https://humanbenchmark.com/tests/reactiontime/statistics
-  readonly product$: Observable<ProductDisplay[]> = this._state
-    .select('products')
-    .pipe(
-      stateful(
-        map((products) =>
-          products.map((product) => ({
-            ...product,
-            discountedPrice:
-              product.price - product.price * (product.discount / 100),
-          }))
-        )
-      )
-    );
+  /**
+   * Seach input debounce time
+   * Using the value as debounce time by approximating average human reaction
+   * @see {@link https://humanbenchmark.com/tests/reactiontime/statistics|Human Reaction Statistics}
+   */
+  readonly debounceTime = 300;
+
+  ngOnInit(): void {
+    this.stateService.loadProducts();
+  }
 
   searchProduct(event: SearchbarCustomEvent) {
     const searchText = event.detail.value;
+    if (searchText) {
+      this.stateService.searchProduct(searchText);
+    }
   }
 }

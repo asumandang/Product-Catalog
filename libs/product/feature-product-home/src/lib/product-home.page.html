@@ -12,8 +12,23 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *rxFor="let product of product$">
-      <pc-product-card [product]="product"></pc-product-card>
-    </ion-item>
+    <ng-container
+      *rxIf="isLoading$; then loading; else products"
+    ></ng-container>
   </ion-list>
 </ion-content>
+
+<ng-template #products>
+  <ion-item *rxFor="let product of product$; trackBy: 'id'; let index = index">
+    <pc-product-card
+      [product]="product"
+      [isPriority]="index < 5"
+    ></pc-product-card>
+  </ion-item>
+</ng-template>
+
+<ng-template #loading>
+  <ion-item *rxFor="let x of [1,2]">
+    <pc-product-card [product]="null"></pc-product-card>
+  </ion-item>
+</ng-template>
