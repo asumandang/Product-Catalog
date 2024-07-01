@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 
-import * as products from './products.json';
-import { of } from 'rxjs';
+import * as productJson from './products.json';
+import { Observable, of } from 'rxjs';
 import { Product } from '@product/shared-dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private readonly _products = products;
+  private readonly _json = productJson;
 
-  getProducts() {
-    return of<Product[]>(this._products);
+  getProducts(): Observable<Product[]> {
+    return of<Product[]>(this._json.products);
   }
 }

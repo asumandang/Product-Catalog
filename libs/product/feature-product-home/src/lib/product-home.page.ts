@@ -13,7 +13,15 @@ import {
 } from '@ionic/angular/standalone';
 import { ProductService } from '@product/product-data-access';
 import { ProductCardComponent } from '@product/product-ui/product-card';
-import type { Product } from '@product/shared-dto';
+import type { Product, ProductDisplay } from '@product/shared-dto';
+import { rxState } from '@rx-angular/state';
+import { stateful } from '@rx-angular/state/selections';
+import { RxFor } from '@rx-angular/template/for';
+import { Observable, map, tap } from 'rxjs';
+
+interface ProductHomePageState {
+  products: Product[];
+}
 
 @Component({
   selector: 'pc-product-home',
@@ -31,14 +39,37 @@ import type { Product } from '@product/shared-dto';
     IonTitle,
     ProductCardComponent,
     IonItem,
+    RxFor,
   ],
 })
 export class ProductHomePage {
-  readonly debounceTime = 300; // Using the value as debounce time by approximating average human reaction https://humanbenchmark.com/tests/reactiontime/statistics
-
   private readonly _productService = inject(ProductService);
+  private readonly _state = rxState<ProductHomePageState>(
+    ({ set, connect }) => {
+      // set initial state
+      set({ products: [] });
+      // connect data source to state
+      connect(
+        'products',
+        this._productService.getProducts().pipe(tap(console.log))
+      );
+    }
+  );
 
-  products: Product[] = [];
+  readonly debounceTime = 300; // Using the value as debounce time by approximating average human reaction https://humanbenchmark.com/tests/reactiontime/statistics
+  readonly product$: Observable<ProductDisplay[]> = this._state
+    .select('products')
+    .pipe(
+      stateful(
+        map((products) =>
+          products.map((product) => ({
+            ...product,
+            discountedPrice:
+              product.price - product.price * (product.discount / 100),
+          }))
+        )
+      )
+    );
 
   searchProduct(event: SearchbarCustomEvent) {
     const searchText = event.detail.value;

@@ -12,10 +12,8 @@
 
 <ion-content>
   <ion-list>
-    @for(product of products; track product.id) {
-    <ion-item>
-      <pc-product-card></pc-product-card>
+    <ion-item *rxFor="let product of product$">
+      <pc-product-card [product]="product"></pc-product-card>
     </ion-item>
-    }
   </ion-list>
 </ion-content>

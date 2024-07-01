@@ -3,5 +3,10 @@ export interface Product {
   name: string;
   price: number;
   description: string;
-  discount: number;
+  imageUrl: string;
+  discount: number; // percent
+}
+
+export interface ProductDisplay extends Product {
+  discountedPrice: number;
 }

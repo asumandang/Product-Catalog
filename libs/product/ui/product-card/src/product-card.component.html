@@ -1,10 +1,33 @@
+@if(product !== null) {
 <ion-card>
+  <div class="image-container">
+    <img class="product-image" [ngSrc]="product.imageUrl" fill />
+  </div>
+
   <ion-card-header>
-    <ion-card-title>Card Title</ion-card-title>
+    <ion-card-title class="product-name">{{ product.name }}</ion-card-title>
+    @if (product.discount > 0) {
+    <ion-card-subtitle class="product-price">
+      <span class="discounted">{{
+        product.discountedPrice | currency : 'PHP'
+      }}</span>
+      <span class="original">{{ product.price | currency : 'PHP' }}</span>
+      <span class="discount">({{ product.discount }}% off)</span>
+    </ion-card-subtitle>
+    } @else {
+    <ion-card-subtitle class="product-price">
+      {{ product.price | currency : 'PHP' }}
+    </ion-card-subtitle>
+    }
   </ion-card-header>
 
-  <ion-card-content>
-    Here's a small text description for the card content. Nothing more, nothing
-    less.
+  <ion-card-content class="product-description">
+    {{ product.description }}
   </ion-card-content>
 </ion-card>
+
+} @else {
+<ion-card>
+  <ion-card-content> No product available </ion-card-content>
+</ion-card>
+}
