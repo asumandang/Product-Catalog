@@ -42,9 +42,13 @@ describe('ProductCardComponent', () => {
 
   it('should display product details properly', () => {
     spectator.setInput({ product });
+
+    // retrieve product related elements
     const name = spectator.query<HTMLElement>('.product-name');
     const price = spectator.query<HTMLElement>('.product-price');
     const description = spectator.query<HTMLElement>('.product-description');
+
+    // check product values
     expect(name?.textContent).toContain('Test Product');
     expect(price?.textContent).toContain('₱100.00');
     expect(description?.textContent).toContain('This is a test product');
@@ -52,9 +56,13 @@ describe('ProductCardComponent', () => {
 
   it('should display discount if discount amount greater than 0', () => {
     spectator.setInput({ product: productWithDiscount });
+
+    // retrieve discount related elements
     const discounted = spectator.query<HTMLSpanElement>('.discounted');
     const original = spectator.query<HTMLSpanElement>('.original');
     const discount = spectator.query<HTMLSpanElement>('.discount');
+
+    // check discount values
     expect(discounted?.textContent).toContain('₱90.00');
     expect(original?.textContent).toContain('₱100.00');
     expect(discount?.textContent).toContain('(10% off)');
