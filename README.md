@@ -80,8 +80,11 @@ npx nx <target> <project> <...options>
 
 You can also run multiple targets:
 
-```
+```shell
 npx nx run-many -t <target1> <target2>
+
+# example
+npx nx run-many -t lint --fix
 ```
 
 ..or add `-p` to filter specific projects
