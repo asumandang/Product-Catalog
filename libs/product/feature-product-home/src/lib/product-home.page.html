@@ -27,6 +27,46 @@
 
 <!-- Template For Displaying Products -->
 <ng-template #products>
+  <ion-toolbar class="sort-toolbar">
+    <ion-buttons *rxLet="sortProduct$; let sortProduct">
+      <ion-button
+        [fill]="sortProduct?.by === 'name' ? 'solid' : 'outline'"
+        (click)="sortBy('name')"
+        >{{ sortProduct?.by === 'name' && sortProduct?.sort === 'descending' ?
+        'Z-A' : 'A-Z'}}
+      </ion-button>
+      <ion-button
+        [fill]="sortProduct?.by === 'price' ? 'solid' : 'outline'"
+        (click)="sortBy('price')"
+        ><span>Price</span>
+        <ion-icon
+          *rxIf="sortProduct?.by === 'price' && sortProduct?.sort === 'ascending'"
+          name="arrow-up-outline"
+          aria-label="Ascending"
+        ></ion-icon
+        ><ion-icon
+          *rxIf="sortProduct?.by === 'price' && sortProduct?.sort === 'descending'"
+          name="arrow-down-outline"
+          aria-label="Ascending"
+        ></ion-icon
+      ></ion-button>
+      <ion-button
+        [fill]="sortProduct?.by === 'discounted' ? 'solid' : 'outline'"
+        (click)="sortBy('discounted')"
+        ><span>Discounted</span>
+        <ion-icon
+          *rxIf="sortProduct?.by === 'discounted' && sortProduct?.sort === 'ascending'"
+          name="arrow-up-outline"
+          aria-label="Ascending"
+        ></ion-icon
+        ><ion-icon
+          *rxIf="sortProduct?.by === 'discounted' && sortProduct?.sort === 'descending'"
+          name="arrow-down-outline"
+          aria-label="Ascending"
+        ></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
   <ion-list *rxLet="product$; let products">
     @for(product of products; track product.id; let index = $index) {
     <ion-item [routerLink]="['/products', product.id]">

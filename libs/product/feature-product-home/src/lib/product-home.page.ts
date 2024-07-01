@@ -3,8 +3,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import {
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
   IonItem,
   IonList,
   IonProgressBar,
@@ -24,6 +27,7 @@ import { RxLet } from '@rx-angular/template/let';
 import { RxPush } from '@rx-angular/template/push';
 
 import { ProductCardComponent } from '@product/product-ui/product-card';
+import type { Sort } from '@product/shared-dto';
 
 import { ProductHomeStateService } from './product-home-state.service';
 
@@ -45,6 +49,9 @@ import { ProductHomeStateService } from './product-home-state.service';
     IonProgressBar,
     IonToast,
     IonText,
+    IonButton,
+    IonButtons,
+    IonIcon,
     RxFor,
     RxIf,
     RxLet,
@@ -61,6 +68,7 @@ export class ProductHomePage implements OnInit {
   readonly isLoading$ = this.stateService.isLoading$;
   readonly error$ = this.stateService.error$;
   readonly action$ = this.stateService.action$;
+  readonly sortProduct$ = this.stateService.sort$;
 
   /**
    * Seach input debounce time
@@ -82,5 +90,9 @@ export class ProductHomePage implements OnInit {
 
   resetSearch() {
     this.stateService.searchProduct(null);
+  }
+
+  sortBy(sortBy: Sort['by']) {
+    this.stateService.sortBy(sortBy);
   }
 }

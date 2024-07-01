@@ -7,13 +7,14 @@ import { selectSlice, stateful } from '@rx-angular/state/selections';
 import { catchError, EMPTY, map, type Observable, switchMap } from 'rxjs';
 
 import { ProductService } from '@product/product-data-access';
-import type { Product, ProductDisplay } from '@product/shared-dto';
+import type { Product, ProductDisplay, Sort } from '@product/shared-dto';
 
 interface ProductHomePageState {
   products: Product[];
   action: 'initial' | 'pending' | 'error' | 'done';
   searchText: string | null;
   errorMessage: string | null;
+  sort: Sort | null;
 }
 
 @Injectable()
@@ -27,6 +28,7 @@ export class ProductHomeStateService {
   private readonly _actions = rxActions<{
     loadProducts: void;
     searchProduct: string | null;
+    sortBy: Sort['by'];
     handleLoadingError: unknown;
   }>();
 
@@ -35,31 +37,53 @@ export class ProductHomeStateService {
    */
   private readonly _state = rxState<ProductHomePageState>(({ set }) => {
     // set initial state
-    set({ products: [], action: 'initial', searchText: null });
+    set({ products: [], action: 'initial', searchText: null, sort: null });
   });
 
   /**
    * Products used for display
    */
   readonly product$: Observable<ProductDisplay[]> = this._state.select().pipe(
-    selectSlice(['products', 'searchText']),
+    selectSlice(['products', 'searchText', 'sort']),
     stateful(
-      map(({ products, searchText }) => {
+      map(({ products, searchText, sort }) => {
         const filteredProducts = searchText
           ? products.filter((product) =>
               product.name.toLowerCase().includes(searchText.toLowerCase())
             )
           : products;
-        return filteredProducts.map((product) => ({
+        const mappedProducts = filteredProducts.map((product) => ({
           ...product,
           discountedPrice:
             product.price - product.price * (product.discount / 100),
         }));
+
+        return sort
+          ? mappedProducts.sort((a, b) => {
+              console.log(sort);
+              if (sort.by === 'price') {
+                return sort.sort === 'ascending'
+                  ? a.price - b.price
+                  : b.price - a.price;
+              } else if (sort.by === 'discounted') {
+                return sort.sort === 'ascending'
+                  ? a.discountedPrice - b.discountedPrice
+                  : b.discountedPrice - a.discountedPrice;
+              } else if (sort.by === 'name') {
+                return sort.sort === 'ascending'
+                  ? a.name.localeCompare(b.name)
+                  : b.name.localeCompare(a.name);
+              }
+
+              return 0;
+            })
+          : mappedProducts;
       })
     )
   );
 
   readonly action$: Observable<string> = this._state.select('action');
+  readonly sort$: Observable<Sort | null> = this._state.select('sort');
   readonly isLoading$: Observable<boolean> = this._state
     .select('action')
     .pipe(stateful(map((action) => action === 'pending')));
@@ -128,6 +152,22 @@ export class ProductHomeStateService {
     this._state.connect(this._actions.searchProduct$, (state, searchText) => {
       return { ...state, searchText };
     });
+
+    // handle sorting
+    this._state.connect(this._actions.sortBy$, (state, sortBy) => {
+      const sort: Sort = { by: sortBy, sort: 'ascending' };
+
+      // If previous sort existed and current sorting by is equal to the previous, toggle ascending/descending
+      const previousSort = state.sort;
+      if (previousSort && previousSort.by === sortBy) {
+        sort.sort =
+          previousSort.sort === 'ascending' ? 'descending' : 'ascending';
+      }
+      return {
+        ...state,
+        sort,
+      };
+    });
   }
 
   loadProducts() {
@@ -136,5 +176,9 @@ export class ProductHomeStateService {
 
   searchProduct(searchText: string | null) {
     this._actions.searchProduct(searchText);
+  }
+
+  sortBy(sortBy: Sort['by']) {
+    this._actions.sortBy(sortBy);
   }
 }
