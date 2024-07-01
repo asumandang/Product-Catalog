@@ -114,15 +114,19 @@
       "standalone": true,
       "prefix": "pc"
     },
+    "@nx/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "displayBlock": true,
+      "standalone": true,
+      "prefix": "pc"
+    },
     "nx-stylelint:configuration": {
       "scss": true,
       "formatter": "string"
     },
     "@nx/angular:library-secondary-entry-point": {
       "skipModule": true
-    },
-    "@nx/angular:component": {
-      "style": "scss"
     }
   }
 }

@@ -29,7 +29,7 @@
 <ng-template #products>
   <ion-list *rxLet="product$; let products">
     @for(product of products; track product.id; let index = $index) {
-    <ion-item>
+    <ion-item [routerLink]="['/products', product.id]">
       <pc-product-card
         [product]="product"
         [isPriority]="index < 5"

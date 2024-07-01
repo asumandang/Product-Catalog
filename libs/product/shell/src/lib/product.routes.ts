@@ -7,4 +7,9 @@ export const productRoutes: Route[] = [
     loadComponent: () =>
       import('@product/product-home').then((m) => m.ProductHomePage),
   },
+  {
+    path: ':id',
+    loadComponent: () =>
+      import('@product/product-detail').then((m) => m.ProductDetailPage),
+  },
 ];

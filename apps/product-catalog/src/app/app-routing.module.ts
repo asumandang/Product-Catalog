@@ -5,31 +5,21 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    redirectTo: 'products',
+  },
+  {
+    path: 'products',
     loadChildren: () =>
       import('@product/product-shell').then((m) => m.productRoutes),
-  },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
-  },
-  {
-    path: 'message/:id',
-    loadChildren: () =>
-      import('./view-message/view-message.module').then(
-        (m) => m.ViewMessagePageModule
-      ),
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, {
+      bindToComponentInputs: true,
+      preloadingStrategy: PreloadAllModules,
+    }),
   ],
   exports: [RouterModule],
 })

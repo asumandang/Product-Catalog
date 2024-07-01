@@ -21,6 +21,7 @@ import { RxPush } from '@rx-angular/template/push';
 import { RxLet } from '@rx-angular/template/let';
 import { ProductHomeStateService } from './product-home-state.service';
 import { NgTemplateOutlet } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'pc-product-home',
@@ -44,6 +45,7 @@ import { NgTemplateOutlet } from '@angular/common';
     RxIf,
     RxLet,
     RxPush,
+    RouterLink,
     ProductCardComponent,
     NgTemplateOutlet,
   ],
