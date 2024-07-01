@@ -1,4 +1,4 @@
-import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
+import { CurrencyPipe, NgOptimizedImage, SlicePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import {
   IonCard,
@@ -23,6 +23,7 @@ import type { ProductDisplay } from '@product/shared-dto';
     IonItem,
     NgOptimizedImage,
     CurrencyPipe,
+    SlicePipe,
 
     // For loading
     IonSkeletonText,
