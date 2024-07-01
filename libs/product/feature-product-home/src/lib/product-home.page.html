@@ -6,6 +6,7 @@
     <ion-searchbar
       [debounce]="debounceTime"
       (ionInput)="searchProduct($event)"
+      (ionClear)="resetSearch()"
     ></ion-searchbar>
     <ion-progress-bar
       *rxIf="isLoading$"
@@ -24,27 +25,34 @@
   } }
 </ion-content>
 
+<!-- Template For Displaying Products -->
 <ng-template #products>
-  <ion-list>
-    <ion-item
-      *rxFor="let product of product$; trackBy: 'id'; let index = index"
-    >
+  <ion-list *rxLet="product$; let products">
+    @for(product of products; track product.id; let index = $index) {
+    <ion-item>
       <pc-product-card
         [product]="product"
         [isPriority]="index < 5"
       ></pc-product-card>
     </ion-item>
+    } @empty {
+    <ion-item>No Products Found</ion-item>
+    }
   </ion-list>
 </ng-template>
 
+<!-- Template When Loading -->
 <ng-template #loading>
   <ion-list>
-    <ion-item *rxFor="let x of [1,2]">
+    @for(x of [1,2]; track x;) {
+    <ion-item>
       <pc-product-card [product]="null"></pc-product-card>
     </ion-item>
+    }
   </ion-list>
 </ng-template>
 
+<!-- Template For Error -->
 <ng-template #error>
   <ion-text *rxLet="error$; let error"
     ><p class="error-text">{{error}}</p></ion-text

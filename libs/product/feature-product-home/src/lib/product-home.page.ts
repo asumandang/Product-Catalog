@@ -73,4 +73,8 @@ export class ProductHomePage implements OnInit {
       this.stateService.searchProduct(searchText);
     }
   }
+
+  resetSearch() {
+    this.stateService.searchProduct(null);
+  }
 }
