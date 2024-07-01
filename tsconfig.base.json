@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@product/product-data-access": ["libs/product/data-access/src/index.ts"],
+      "@product/product-detail": [
+        "libs/product/feature-product-detail/src/index.ts"
+      ],
       "@product/product-home": [
         "libs/product/feature-product-home/src/index.ts"
       ],
