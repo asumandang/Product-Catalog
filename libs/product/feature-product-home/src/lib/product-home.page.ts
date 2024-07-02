@@ -25,6 +25,8 @@ import { RxFor } from '@rx-angular/template/for';
 import { RxIf } from '@rx-angular/template/if';
 import { RxLet } from '@rx-angular/template/let';
 import { RxPush } from '@rx-angular/template/push';
+import { addIcons } from 'ionicons';
+import { arrowDownOutline, arrowUpOutline } from 'ionicons/icons';
 
 import { ProductCardComponent } from '@product/product-ui/product-card';
 import type { Sort } from '@product/shared-dto';
@@ -76,6 +78,10 @@ export class ProductHomePage implements OnInit {
    * @see {@link https://humanbenchmark.com/tests/reactiontime/statistics|Human Reaction Statistics}
    */
   readonly debounceTime = 300;
+
+  constructor() {
+    addIcons({ arrowUpOutline, arrowDownOutline });
+  }
 
   ngOnInit(): void {
     this.stateService.loadProducts();

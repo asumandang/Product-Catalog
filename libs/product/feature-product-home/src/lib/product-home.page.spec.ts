@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 
 import {
+  byText,
   createComponentFactory,
   type Spectator,
   SpyObject,
@@ -78,5 +79,67 @@ describe('ProductHomePage', () => {
 
     const empty = spectator.query<HTMLElement>('.empty-text');
     expect(empty).toBeTruthy();
+  });
+
+  describe('ProductHomePage Sorting', () => {
+    beforeEach(() => {
+      // mock product service to return product list for sorting
+      productService.getProducts.mockReturnValue(
+        of([
+          { ...product, id: 1, price: 4 },
+          { ...product, id: 2, price: 1 },
+          { ...product, id: 3, price: 3 },
+          { ...product, id: 4, price: 2 },
+        ])
+      );
+      spectator.detectChanges();
+    });
+
+    it('should sort list by price', () => {
+      // click sort button
+      spectator.click(byText('Price'));
+
+      // map retrieved price from template to number
+      const priceList = spectator
+        .queryAll<HTMLElement>('.product-list .product-price .original')
+        .map((priceElem) => {
+          const price = priceElem.textContent
+            ?.trim()
+            .replace('₱', '')
+            .replace(',', '');
+          return price ? +price : 0;
+        });
+
+      // check sorting if ordered properly
+      expect(
+        priceList.every((price, index, array) => {
+          return index === 0 || array[index - 1] <= price;
+        })
+      ).toBeTruthy();
+    });
+
+    it('should sort list by price descending', () => {
+      // click sort button (click twice to sort descending)
+      spectator.click(byText('Price'));
+      spectator.click(byText('Price'));
+
+      // map retrieved price from template to number
+      const priceList = spectator
+        .queryAll<HTMLElement>('.product-list .product-price .original')
+        .map((priceElem) => {
+          const price = priceElem.textContent
+            ?.trim()
+            .replace('₱', '')
+            .replace(',', '');
+          return price ? +price : 0;
+        });
+
+      // check sorting if ordered properly
+      expect(
+        priceList.every((price, index, array) => {
+          return index === 0 || array[index - 1] >= price;
+        })
+      ).toBeTruthy();
+    });
   });
 });
