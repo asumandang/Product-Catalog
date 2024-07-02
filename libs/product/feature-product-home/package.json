@@ -11,7 +11,8 @@
     "@rx-angular/state": "^18.0.0",
     "rxjs": "~7.8.0",
     "@rx-angular/template": "^18.0.0",
-    "@angular/router": "~18.0.0"
+    "@angular/router": "~18.0.0",
+    "ionicons": "^7.0.0"
   },
   "sideEffects": false
 }
