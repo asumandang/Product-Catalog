@@ -1,5 +1,6 @@
 {
   "ignoreFiles": ["**/*"],
+  "plugins": ["stylelint-order"],
   "overrides": [
     {
       "files": ["**/*.css"],
@@ -9,7 +10,10 @@
     {
       "files": ["**/*.scss"],
       "extends": ["stylelint-config-standard-scss"],
-      "rules": {}
+      "rules": {
+        "order/order": true,
+        "order/properties-order": true
+      }
     }
   ],
   "rules": {}
