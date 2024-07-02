@@ -67,7 +67,7 @@
       ></ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-list *rxLet="product$; let products">
+  <ion-list class="product-list" *rxLet="product$; let products">
     @for(product of products; track product.id; let index = $index) {
     <ion-item [routerLink]="['/products', product.id]">
       <pc-product-card
@@ -76,7 +76,7 @@
       ></pc-product-card>
     </ion-item>
     } @empty {
-    <ion-item>No Products Found</ion-item>
+    <ion-item class="empty-text">No Products Found</ion-item>
     }
   </ion-list>
 </ng-template>
@@ -84,7 +84,7 @@
 <!-- Template When Loading -->
 <ng-template #loading>
   <ion-list>
-    @for(x of [1,2]; track x;) {
+    @for(_ of [1,2]; track _;) {
     <ion-item>
       <pc-product-card [product]="null"></pc-product-card>
     </ion-item>
