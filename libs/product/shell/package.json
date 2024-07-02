@@ -6,5 +6,21 @@
     "@product/product-home": "^0.0.1",
     "@product/product-detail": "0.0.1"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "module": "esm2022/product-product-shell.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/product-product-shell.mjs",
+      "esm": "./esm2022/product-product-shell.mjs",
+      "default": "./esm2022/product-product-shell.mjs"
+    }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
 }

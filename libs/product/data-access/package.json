@@ -6,5 +6,21 @@
     "rxjs": "^7.0.0",
     "@product/shared-dto": "0.0.1"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "module": "esm2022/product-product-data-access.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/product-product-data-access.mjs",
+      "esm": "./esm2022/product-product-data-access.mjs",
+      "default": "./esm2022/product-product-data-access.mjs"
+    }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
 }
