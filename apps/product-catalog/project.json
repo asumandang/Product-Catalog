@@ -10,7 +10,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/product-catalog",
+        "outputPath": "docs",
         "index": "apps/product-catalog/src/index.html",
         "main": "apps/product-catalog/src/main.ts",
         "polyfills": ["zone.js"],
