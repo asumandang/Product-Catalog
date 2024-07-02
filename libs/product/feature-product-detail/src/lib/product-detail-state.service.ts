@@ -58,11 +58,9 @@ export class ProductDetailStateService {
 
     this._state.connect(
       idRouteChanges$.pipe(
-        tap((x) => console.log(x)),
         switchMap((id) => this._productService.getProduct(id))
       ),
       (state, product) => {
-        console.log(product);
         return { ...state, product, action: 'done' };
       }
     );

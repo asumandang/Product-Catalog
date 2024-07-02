@@ -3,7 +3,6 @@ import { provideRouter } from '@angular/router';
 
 import {
   createComponentFactory,
-  createSpyObject,
   type Spectator,
   SpyObject,
 } from '@ngneat/spectator/jest';
@@ -44,7 +43,6 @@ describe('ProductHomePage', () => {
   });
 
   beforeEach(() => {
-    // mock product service to return empty list
     spectator = createComponent();
     productService = spectator.inject<ProductService>(ProductService);
   });
@@ -74,6 +72,7 @@ describe('ProductHomePage', () => {
   });
 
   it('should display empty list when no products are found', () => {
+    // mock product service to return empty list
     productService.getProducts.mockReturnValue(of([]));
     spectator.detectChanges();
 

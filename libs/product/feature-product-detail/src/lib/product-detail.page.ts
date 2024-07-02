@@ -23,6 +23,8 @@ import {
 
 import { RxIf } from '@rx-angular/template/if';
 import { RxLet } from '@rx-angular/template/let';
+import { addIcons } from 'ionicons';
+import { caretBack } from 'ionicons/icons';
 
 import { ProductDetailStateService } from './product-detail-state.service';
 
@@ -58,6 +60,10 @@ export class ProductDetailPage implements OnInit {
   product$ = this._stateService.product$;
   isLoading$ = this._stateService.isLoading$;
   @Input({ transform: numberAttribute }) id = '';
+
+  constructor() {
+    addIcons({ caretBack });
+  }
 
   ngOnInit(): void {
     console.log(this.id);

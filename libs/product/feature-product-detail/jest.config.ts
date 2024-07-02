@@ -1,4 +1,6 @@
 /* eslint-disable */
+const esModules = ['@ionic', '@stencil', 'ionicons', '.*.mjs$'].join('|');
+
 export default {
   displayName: 'product-detail',
   preset: '../../../jest.preset.js',
@@ -13,7 +15,7 @@ export default {
       },
     ],
   },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+  transformIgnorePatterns: [`node_modules/(?!(${esModules}))`],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
